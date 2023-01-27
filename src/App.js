@@ -1,7 +1,9 @@
+import Home from "./assets/pages/home/Home";
+
 const App = () => {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div className="app">
+      <Home />
     </div>
   );
 };
