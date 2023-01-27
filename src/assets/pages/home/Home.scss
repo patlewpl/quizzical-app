@@ -1,0 +1,17 @@
+.home {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .page-title {
+    font-size: 32px;
+  }
+
+  .page-description {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+}
