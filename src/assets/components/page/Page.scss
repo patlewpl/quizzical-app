@@ -1,0 +1,18 @@
+.container {
+  position: relative;
+  overflow: hidden;
+
+  .blob {
+    position: absolute;
+  }
+
+  .blob-yellow {
+    right: -140px;
+    top: -140px;
+  }
+
+  .blob-blue {
+    bottom: -125px;
+    left: -125px;
+  }
+}
