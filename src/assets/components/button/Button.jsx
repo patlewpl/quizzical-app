@@ -5,9 +5,7 @@ const Button = ({ children, onClick, isLink = false, link }) => {
   if (isLink) {
     return (
       <Link to={link}>
-        <button className="btn" onClick={onClick}>
-          {children}
-        </button>
+        <button className="btn">{children}</button>
       </Link>
     );
   } else {
