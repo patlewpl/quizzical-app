@@ -1,0 +1,20 @@
+.quiz-answer {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  padding: 6px 16px;
+  display: inline-flex;
+  border: 1px solid #4d5b9e;
+  border-radius: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d6dbf5;
+    border-color: #d6dbf5;
+  }
+}
+
+.active {
+  background-color: #d6dbf5;
+  border-color: #d6dbf5;
+}
