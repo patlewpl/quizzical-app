@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { decode } from "html-entities";
 import { useEffect, useState } from "react";
 import Button from "../../components/button/Button";
 import Page from "../../components/page/Page";
@@ -7,10 +8,7 @@ import "./Quiz.scss";
 
 const Quiz = () => {
   const [quizData, setQuizData] = useState([]);
-
-  const settings = {
-    numberOfQuestions: 5,
-  };
+  const settings = { numberOfQuestions: 5 };
 
   useEffect(() => {
     fetch(`https://opentdb.com/api.php?amount=${settings.numberOfQuestions}`)
@@ -18,7 +16,7 @@ const Quiz = () => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error("Something went wrong");
+        throw new Error("Something went wrong!");
       })
       .then((data) => {
         setQuizData(
@@ -38,14 +36,6 @@ const Quiz = () => {
       });
   }, []);
 
-  const removeCharacters = (text) => {
-    return text
-      .replace(/(&quot\;)/g, '"')
-      .replace(/(&rsquo\;)/g, '"')
-      .replace(/(&#039\;)/g, "'")
-      .replace(/(&amp\;)/g, '"');
-  };
-
   const handleAnswer = (questionId, answer) => {
     setQuizData((prevQuizData) =>
       prevQuizData.map((item) =>
@@ -54,18 +44,16 @@ const Quiz = () => {
     );
   };
 
-  console.log(quizData);
-
-  const quiz = quizData.map((item, index) => (
+  const questions = quizData.map((item, index) => (
     <div className="quiz-item" key={index}>
-      <h2>{item.question}</h2>
-      {item.answers.map((answer, answerIndex) => (
+      <h2>{decode(item.question)}</h2>
+      {item.answers.map((answer) => (
         <Answer
           id={item.id}
-          key={answerIndex}
-          label={answer}
-          isActive={answer === item.selectedAnswer}
+          key={item.id}
           onClick={handleAnswer}
+          label={decode(answer)}
+          isActive={decode(answer) === item.selectedAnswer}
         />
       ))}
     </div>
@@ -74,7 +62,7 @@ const Quiz = () => {
   return (
     <Page>
       <section className="quiz">
-        {quiz}
+        {questions}
         <div className="quiz-button">
           <Button>Check answers</Button>
         </div>
