@@ -1,0 +1,23 @@
+.quiz {
+  max-width: 720px;
+  padding: 20px 40px;
+  overflow-y: scroll;
+
+  .quiz-error {
+    color: #ff2e2e;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .quiz-footer {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .quiz-result {
+      margin-right: 30px;
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+
+  .blob {
+    position: absolute;
+    z-index: -1;
+  }
+
+  .blob-yellow {
+    right: -140px;
+    top: -140px;
+  }
+
+  .blob-blue {
+    bottom: -125px;
+    left: -125px;
+  }
+}
