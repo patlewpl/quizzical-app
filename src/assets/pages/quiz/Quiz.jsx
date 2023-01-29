@@ -1,17 +1,23 @@
-import { nanoid } from "nanoid";
-import { decode } from "html-entities";
-import { useEffect, useState } from "react";
-import Button from "../../components/button/Button";
-import Page from "../../components/page/Page";
-import Answer from "../../components/quiz/Answer";
 import "./Quiz.scss";
+import { nanoid } from "nanoid";
+import { useEffect, useState } from "react";
+import Page from "../../components/page/Page";
+import Button from "../../components/button/Button";
+import Questions from "../../components/quiz/Questions";
 
 const Quiz = () => {
-  const [quizData, setQuizData] = useState([]);
-  const settings = { numberOfQuestions: 5 };
+  const [isError, setIsError] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
-  useEffect(() => {
-    fetch(`https://opentdb.com/api.php?amount=${settings.numberOfQuestions}`)
+  const gameSettings = {
+    numberOfQuestions: 5,
+  };
+
+  const fetchQuestions = () => {
+    const url = `https://opentdb.com/api.php?amount=${gameSettings.numberOfQuestions}`;
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -19,7 +25,7 @@ const Quiz = () => {
         throw new Error("Something went wrong!");
       })
       .then((data) => {
-        setQuizData(
+        setQuestions(
           data.results.map((item) => ({
             id: nanoid(),
             question: item.question,
@@ -34,37 +40,70 @@ const Quiz = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+  };
+
+  useEffect(() => {
+    fetchQuestions();
+    // eslint-disable-next-line
   }, []);
 
   const handleAnswer = (questionId, answer) => {
-    setQuizData((prevQuizData) =>
-      prevQuizData.map((item) =>
-        item.id === questionId ? { ...item, selectedAnswer: answer } : item
+    setQuestions((prevQuestions) =>
+      prevQuestions.map((prevQuestion) =>
+        prevQuestion.id === questionId
+          ? { ...prevQuestion, selectedAnswer: answer }
+          : prevQuestion
       )
     );
   };
 
-  const questions = quizData.map((item, index) => (
-    <div className="quiz-item" key={index}>
-      <h2>{decode(item.question)}</h2>
-      {item.answers.map((answer) => (
-        <Answer
-          id={item.id}
-          key={item.id}
-          onClick={handleAnswer}
-          label={decode(answer)}
-          isActive={decode(answer) === item.selectedAnswer}
-        />
-      ))}
-    </div>
-  ));
+  const countCorrectAnswers = () => {
+    questions.forEach((question) => {
+      if (question.selectedAnswer === question.correctAnswer) {
+        setCorrectAnswers((prev) => prev + 1);
+      }
+    });
+  };
+
+  const checkIfQuestionsAnswered = questions.every(
+    (question) => question.selectedAnswer !== null
+  );
+
+  const checkAnswers = () => {
+    if (checkIfQuestionsAnswered) {
+      countCorrectAnswers();
+      setGameOver(true);
+      setIsError(false);
+    } else {
+      setIsError(true);
+    }
+  };
+
+  const startGame = () => {
+    setCorrectAnswers(0);
+    setGameOver(false);
+    fetchQuestions();
+  };
 
   return (
     <Page>
       <section className="quiz">
-        {questions}
-        <div className="quiz-button">
-          <Button>Check answers</Button>
+        {isError && <p className="quiz-error">All questions are required!</p>}
+        <Questions
+          questions={questions}
+          gameOver={gameOver}
+          handleAnswer={handleAnswer}
+        />
+        <div className="quiz-footer">
+          {gameOver && (
+            <p className="quiz-result">
+              You scored {correctAnswers}/{gameSettings.numberOfQuestions}{" "}
+              correct answers
+            </p>
+          )}
+          <Button onClick={gameOver ? startGame : checkAnswers}>
+            {gameOver ? "Play again" : "Check answers"}
+          </Button>
         </div>
       </section>
     </Page>

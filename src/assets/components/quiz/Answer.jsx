@@ -1,11 +1,13 @@
 import "./Answer.scss";
 
-const Answer = ({ id, label, onClick, isActive }) => {
+const Answer = ({ id, label, onClick, isActive, correctAnswer, gameOver }) => {
+  console.log(gameOver);
+  const customClassName = `${isActive ? "quiz-answer active" : "quiz-answer"} ${
+    gameOver && correctAnswer === label ? "correct" : ""
+  } ${gameOver && isActive && correctAnswer !== label ? "incorrect" : ""} `;
+
   return (
-    <div
-      className={isActive ? "quiz-answer active" : "quiz-answer"}
-      onClick={() => onClick(id, label)}
-    >
+    <div className={customClassName} onClick={() => onClick(id, label)}>
       {label}
     </div>
   );
