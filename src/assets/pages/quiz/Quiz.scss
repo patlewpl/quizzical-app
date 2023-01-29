@@ -1,12 +1,16 @@
 .quiz {
   max-width: 720px;
   padding: 20px 40px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   .quiz-error {
-    color: #ff2e2e;
-    font-size: 18px;
+    margin-top: 20px;
+    padding: 4px;
+    font-size: 16px;
+    font-weight: 700;
     text-align: center;
+    color: #fc1f1f;
+    border: 1px solid;
   }
 
   .quiz-footer {
@@ -20,4 +24,25 @@
       font-weight: 700;
     }
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #d6dbf5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 1px solid #4d5b9e;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4d5b9e;
 }
