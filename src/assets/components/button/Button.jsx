@@ -1,16 +1,29 @@
 import { Link } from "react-router-dom";
 import "./Button.scss";
 
-const Button = ({ children, onClick, isLink = false, link }) => {
+const Button = ({
+  children,
+  styles,
+  onClick,
+  link,
+  isLink = false,
+  secondary = false,
+}) => {
   if (isLink) {
     return (
       <Link to={link}>
-        <button className="btn">{children}</button>
+        <button className={secondary ? "btn secondary" : "btn"} style={styles}>
+          {children}
+        </button>
       </Link>
     );
   } else {
     return (
-      <button className="btn" onClick={onClick}>
+      <button
+        className={secondary ? "btn secondary" : "btn"}
+        style={styles}
+        onClick={onClick}
+      >
         {children}
       </button>
     );
