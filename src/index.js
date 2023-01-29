@@ -13,6 +13,11 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
+    path: "/quizzical-app/",
+    element: <App />,
+    errorElement: <Error />,
+  },
+  {
     path: "/quiz",
     element: <Quiz />,
     errorElement: <Error />,
