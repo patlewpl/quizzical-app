@@ -3,7 +3,7 @@
   background-color: #4d5b9e;
   color: #f5f7fb;
   font-size: 16px;
-  border: none;
+  border: 1px solid #4d5b9e;
   border-radius: 20px;
   transition: 0.3s;
   cursor: pointer;
@@ -11,4 +11,9 @@
   &:hover {
     opacity: 0.8;
   }
+}
+
+.secondary {
+  background-color: transparent;
+  color: #4d5b9e;
 }

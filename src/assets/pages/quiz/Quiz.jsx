@@ -93,11 +93,16 @@ const Quiz = () => {
   return (
     <Page>
       <section className="quiz">
-        {isError && <p className="quiz-error">All questions are required!</p>}
         {isLoading ? (
           <Loader />
         ) : (
           <>
+            <Button isLink link="/">
+              <i className="fa-solid fa-arrow-left"></i>
+            </Button>
+            {isError && (
+              <p className="quiz-error">All questions are required!</p>
+            )}
             <Questions
               questions={questions}
               gameOver={gameOver}
