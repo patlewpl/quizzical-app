@@ -1,0 +1,15 @@
+.home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .page-title {
+    font-size: 32px;
+  }
+
+  .page-description {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+}
