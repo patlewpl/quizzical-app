@@ -5,6 +5,7 @@ import Page from "../../components/page/Page";
 import Button from "../../components/button/Button";
 import Questions from "../../components/quiz/Questions";
 import Loader from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
   const [isError, setIsError] = useState(false);
@@ -12,6 +13,7 @@ const Quiz = () => {
   const [gameOver, setGameOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const navigate = useNavigate();
 
   const gameSettings = {
     numberOfQuestions: 5,
@@ -97,7 +99,7 @@ const Quiz = () => {
           <Loader />
         ) : (
           <>
-            <Button isLink link="/">
+            <Button onClick={() => navigate(-1)}>
               <i className="fa-solid fa-arrow-left"></i>
             </Button>
             {isError && (
