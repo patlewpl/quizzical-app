@@ -79,6 +79,7 @@ const Quiz = () => {
       setGameOver(true);
       setIsError(false);
     } else {
+      document.querySelector(".quiz").scrollTo({ top: 0, behavior: "smooth" });
       setIsError(true);
     }
   };

@@ -4,9 +4,12 @@
   overflow-y: auto;
 
   .quiz-error {
-    color: #ff2e2e;
-    font-size: 18px;
+    padding: 4px;
+    font-size: 16px;
+    font-weight: 700;
     text-align: center;
+    color: #fc1f1f;
+    border: 1px solid;
   }
 
   .quiz-footer {
