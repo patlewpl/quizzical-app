@@ -2,9 +2,9 @@
   "files": {
     "main.css": "/quizzical-app/static/css/main.7efb6d96.css",
     "main.js": "/quizzical-app/static/js/main.af3fce80.js",
+    "index.html": "/quizzical-app/index.html",
     "static/media/blob-blue.svg": "/quizzical-app/static/media/blob-blue.990657c3ca1465b4786a212fd7728e4d.svg",
     "static/media/blob-yellow.svg": "/quizzical-app/static/media/blob-yellow.7c4bb61c5ad16e0b64d33691717aad0e.svg",
-    "index.html": "/quizzical-app/index.html",
     "main.7efb6d96.css.map": "/quizzical-app/static/css/main.7efb6d96.css.map",
     "main.af3fce80.js.map": "/quizzical-app/static/js/main.af3fce80.js.map"
   },
