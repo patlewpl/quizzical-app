@@ -5,6 +5,7 @@ const Button = ({
   children,
   styles,
   onClick,
+  type,
   link,
   isLink = false,
   secondary = false,
@@ -21,6 +22,7 @@ const Button = ({
     return (
       <button
         className={secondary ? "btn secondary" : "btn"}
+        type={type}
         style={styles}
         onClick={onClick}
       >

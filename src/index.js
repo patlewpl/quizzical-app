@@ -12,15 +12,15 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <Error />,
   },
-  {
-    path: "/quiz",
-    element: <Quiz />,
-    errorElement: <Error />,
-  },
-  // Route for GitHub Pages
+  // Route for GitHub Pages /quizzical-app
   {
     path: "/quizzical-app/",
     element: <App />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/quizzical-app/quiz",
+    element: <Quiz />,
     errorElement: <Error />,
   },
 ]);

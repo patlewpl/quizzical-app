@@ -15,13 +15,23 @@ const Quiz = () => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const navigate = useNavigate();
 
+  const settings = JSON.parse(localStorage.getItem("settings"));
   const gameSettings = {
-    numberOfQuestions: 5,
+    numberOfQuestions: settings.numberOfQuestions,
+    category: settings.category,
+    difficulty: settings.difficulty,
+    type: settings.type,
   };
 
   const fetchQuestions = () => {
     setIsLoading(true);
-    const url = `https://opentdb.com/api.php?amount=${gameSettings.numberOfQuestions}`;
+    const url = `https://opentdb.com/api.php?amount=${
+      gameSettings.numberOfQuestions
+    }&category=${
+      gameSettings.category !== "any" ? gameSettings.category : ""
+    }&difficulty=${
+      gameSettings.difficulty !== "any" ? gameSettings.difficulty : ""
+    }&type=${gameSettings.type !== "any" ? gameSettings.type : ""}`;
     fetch(url)
       .then((response) => {
         if (response.ok) {

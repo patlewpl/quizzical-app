@@ -11,3 +11,7 @@ body {
   background-color: #f5f7fb;
   color: #293264;
 }
+
+.page-title {
+  font-size: 42px;
+}
