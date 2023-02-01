@@ -7,6 +7,7 @@ import "./Home.scss";
 const Home = () => {
   const localSettings = JSON.parse(localStorage.getItem("settings"));
   const [showSettings, setShowSettings] = useState(false);
+  // eslint-disable-next-line
   const [settings, setSettings] = useState({
     numberOfQuestions: localSettings?.numberOfQuestions ?? "5",
     category: localSettings?.category ?? "any",
@@ -16,6 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));
+    // eslint-disable-next-line
   }, []);
 
   return (
