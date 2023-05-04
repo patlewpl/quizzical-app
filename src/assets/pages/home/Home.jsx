@@ -31,11 +31,7 @@ const Home = () => {
           <Button isLink link="/quizzical-app/quiz">
             <i className="fa-solid fa-play"></i> Start quiz
           </Button>
-          <Button
-            secondary
-            styles={{ marginTop: "8px" }}
-            onClick={() => setShowSettings(true)}
-          >
+          <Button secondary styles={{ marginTop: "8px" }} onClick={() => setShowSettings(true)}>
             <i className="fa fa-gear"></i> Settings
           </Button>
         </section>
