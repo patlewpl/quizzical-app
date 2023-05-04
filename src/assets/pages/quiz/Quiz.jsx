@@ -25,13 +25,11 @@ const Quiz = () => {
 
   const fetchQuestions = () => {
     setIsLoading(true);
-    const url = `https://opentdb.com/api.php?amount=${
-      gameSettings.numberOfQuestions
-    }&category=${
+    const url = `https://opentdb.com/api.php?amount=${gameSettings.numberOfQuestions}&category=${
       gameSettings.category !== "any" ? gameSettings.category : ""
-    }&difficulty=${
-      gameSettings.difficulty !== "any" ? gameSettings.difficulty : ""
-    }&type=${gameSettings.type !== "any" ? gameSettings.type : ""}`;
+    }&difficulty=${gameSettings.difficulty !== "any" ? gameSettings.difficulty : ""}&type=${
+      gameSettings.type !== "any" ? gameSettings.type : ""
+    }`;
     fetch(url)
       .then((response) => {
         if (response.ok) {
@@ -66,9 +64,7 @@ const Quiz = () => {
   const handleAnswer = (questionId, answer) => {
     setQuestions((prevQuestions) =>
       prevQuestions.map((prevQuestion) =>
-        prevQuestion.id === questionId
-          ? { ...prevQuestion, selectedAnswer: answer }
-          : prevQuestion
+        prevQuestion.id === questionId ? { ...prevQuestion, selectedAnswer: answer } : prevQuestion
       )
     );
   };
@@ -81,9 +77,7 @@ const Quiz = () => {
     });
   };
 
-  const checkIfQuestionsAnswered = questions.every(
-    (question) => question.selectedAnswer !== null
-  );
+  const checkIfQuestionsAnswered = questions.every((question) => question.selectedAnswer !== null);
 
   const checkAnswers = () => {
     if (checkIfQuestionsAnswered) {
@@ -112,25 +106,20 @@ const Quiz = () => {
             <Button onClick={() => navigate(-1)}>
               <i className="fa-solid fa-arrow-left"></i>
             </Button>
-            {isError && (
-              <p className="quiz-error">All questions are required!</p>
+            {isError && <p className="quiz-error">All questions are required!</p>}
+            <Questions questions={questions} gameOver={gameOver} handleAnswer={handleAnswer} />
+            {questions.length > 0 && (
+              <div className="quiz-footer">
+                {gameOver && (
+                  <p className="quiz-result">
+                    You scored {correctAnswers}/{gameSettings.numberOfQuestions} correct answers
+                  </p>
+                )}
+                <Button onClick={gameOver ? startGame : checkAnswers}>
+                  {gameOver ? "Play again" : "Check answers"}
+                </Button>
+              </div>
             )}
-            <Questions
-              questions={questions}
-              gameOver={gameOver}
-              handleAnswer={handleAnswer}
-            />
-            <div className="quiz-footer">
-              {gameOver && (
-                <p className="quiz-result">
-                  You scored {correctAnswers}/{gameSettings.numberOfQuestions}{" "}
-                  correct answers
-                </p>
-              )}
-              <Button onClick={gameOver ? startGame : checkAnswers}>
-                {gameOver ? "Play again" : "Check answers"}
-              </Button>
-            </div>
           </>
         )}
       </section>
